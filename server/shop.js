@@ -61,6 +61,7 @@ module.exports = {
     initCart: () => {
         shoppingCart = {}; // reset shoppingCart to empty dict
     },
+    pricingDict: pricingDict,
     addItem: addItem,
     showTotal: showTotal,
 }
