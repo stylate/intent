@@ -10,7 +10,7 @@ const cartReducer = (state = initialState, action) => {
         case 'ADD':
             return {
                 ...state,
-                items: action.items,
+                items: state.items.concat(action.value),
                 total: action.total,
             }
         default:
