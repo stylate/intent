@@ -12,14 +12,11 @@ var pricingDict = pricing.reduce((map, obj) => {
 }, {});
 
 var shoppingCart = {}; // dictionary structure to hold items in shopping cart
-var initCart = () => {
-    shoppingCart = {}; // reset shoppingCart to empty dict
-};
 
 /* Calculate the final price based on a discount (if it exists). */
-var finalPrice = (count, total) => {
-    let discount = pricingDict.id.volume_discounts;
-    if (count == 0 || discount.length == 0 || count % discount.number != 0) {
+var finalPrice = (id, count, total) => {
+    let discount = pricingDict[id].volume_discounts[0];
+    if (count == 0 || !discount || count % discount.number != 0) {
         return total; // no existence of items, no discount or not enough counts of item
     }
 
@@ -31,17 +28,17 @@ var finalPrice = (count, total) => {
 var addItem = (id) => {
     // check if ID already exists in shoppingCart
     let data;
-    let price = pricingDict.id.unit_price;
+    let price = pricingDict[id].unit_price;
     if (id in shoppingCart) {
         data = shoppingCart[id];
         let currTotal = data.total;
         data.count += 1;
-        data.total = finalPrice(data.count, currTotal + price);
+        data.total = finalPrice(id, data.count, currTotal + price);
         shoppingCart[id] = data;
     } else { // ID not in shoppingCart
         data = {
             count: 1,
-            total: finalPrice(1, price),
+            total: finalPrice(id, 1, price),
         }; // initialize
         // check if discount is applied
         shoppingCart[id] = data;
@@ -50,16 +47,20 @@ var addItem = (id) => {
 
 /* Show total price from shopping cart. */
 var showTotal = () => {
-    let total = 0;
+    var totalPrice = 0;
     Object.keys(shoppingCart).map((item) => {
-        total += item.total;
+        totalPrice += shoppingCart[item].total;
     })
-    return total;
+    return totalPrice;
 }
 
 module.exports = {
-    shoppingCart: shoppingCart,
-    initCart: initCart,
+    shoppingCart: () => {
+        return shoppingCart;
+    },
+    initCart: () => {
+        shoppingCart = {}; // reset shoppingCart to empty dict
+    },
     addItem: addItem,
     showTotal: showTotal,
 }
