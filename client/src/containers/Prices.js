@@ -1,13 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { Grid } from 'semantic-ui-react';
 import { CartActions } from '../actions';
-import { Items } from '../components';
 
 const Wrapper = styled.div``;
 
-const CartContainer = async () => {
-    const currState = useSelector((state) => state.cartReducer);
+const PricesContainer = () => {
     const dispatch = useDispatch();
     const addItem = async (id) => dispatch(await CartActions.addItem(id));
     const onClickAdd = (id) => {
@@ -20,9 +19,13 @@ const CartContainer = async () => {
     console.log("pricing: ", pricing)
     return (
         <Wrapper>
-
+            <Grid>
+                {pricing && pricing.map((item) => {
+                    <Grid.Row><Metadata data={item} action={onClickAdd} /></Grid.Row>
+                })}
+            </Grid>
         </Wrapper>
     );
 }
 
-export default CartContainer;
+export default PricesContainer;

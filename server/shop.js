@@ -13,6 +13,11 @@ var pricingDict = pricing.reduce((map, obj) => {
 
 var shoppingCart = {}; // dictionary structure to hold items in shopping cart
 
+/* Get ALL pricing configurations. */
+var getData = () => {
+    return pricingDict;
+}
+
 /* Calculate the final price based on a discount (if it exists). */
 var finalPrice = (id, count, total) => {
     let discount = pricingDict[id].volume_discounts[0];
@@ -61,7 +66,7 @@ module.exports = {
     initCart: () => {
         shoppingCart = {}; // reset shoppingCart to empty dict
     },
-    pricingDict: pricingDict,
+    getData: getData,
     addItem: addItem,
     showTotal: showTotal,
 }

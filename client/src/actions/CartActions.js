@@ -2,14 +2,19 @@ import axios from 'axios';
 
 const domain = 'http://localhost:8000';
 
+const getPricing = () => {
+    const resp = await axios(domain + '/items');
+    return resp.data;
+}
+
 const addItem = async (id) => {
     const path = domain + '/add' + id;
-    await axios.post(path); // POST /add/:id -> append to shopping cart DS
+    const cart = await axios.post(path); // POST /add/:id -> append to shopping cart DS
     const resp = await axios(domain + '/total'); // get total by calling GET /total
     return {
         type: 'ADD',
-        value: id,
-        total: resp.data
+        items: cart.data,
+        total: resp.data,
     };
 }
 
@@ -22,4 +27,5 @@ const clearCart = () => {
 export const CartActions = {
     addItem,
     clearCart,
+    getPricing,
 };

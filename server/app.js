@@ -21,16 +21,17 @@ app.get("/init", (req, res, next) => {
 /* Get total price from shopping cart. */
 app.get("/total", (req, res, next) => {
     res.json(shop.showTotal());
-})
+});
 
 /* Retrieve information regarding an item. */
-app.get("/item/:id", (req, res, next) => {
-    res.json(shop.pricingDict[req.params.id]);
-})
+app.get("/items", (req, res, next) => {
+    res.json(shop.getData());
+});
 
 /* Add ID to shopping cart. */
 app.post("/add/:id", (req, res, next) => {
     const data = req.body; // body only contains ID
     console.log("data: ", data);
-    res.send({data});
+    shop.addItem(data);
+    res.send(shop.shoppingCart); // send updated shopping cart information
 });
