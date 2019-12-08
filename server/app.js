@@ -25,4 +25,7 @@ app.get("/total", (req, res, next) => {
 
 /* Add ID to shopping cart. */
 app.post("/add/:id", (req, res, next) => {
+    const data = req.body;
+    console.log("data: ", data);
+    res.send({data});
 });
