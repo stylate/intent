@@ -2,28 +2,29 @@ import React from 'react';
 import styled from 'styled-components';
 import { Grid } from 'semantic-ui-react';
 
+import { Item } from './Item';
+
 const Wrapper = styled.div``;
 
 export const Cart = (props) => {
-    const { items, totalPrice } = props;
-    console.log("items: ", items);
+    const { items, totalPrice, clear } = props;
+    console.log("cart props: ", props);
     return (
         <Wrapper>
             <Grid>
                 {items && items.length > 0
-                    ? items.forEach((item) => {
+                    ? items.forEach((item, idx) => {
                         const { count, description, total} = item[0];
                         return (
-                            <Grid.Row>
-                                <Grid.Column>Count: {count}</Grid.Column>
-                                <Grid.Column>Description: {description}</Grid.Column>
-                                <Grid.Column>Total: {total}</Grid.Column>
+                            <Grid.Row key={idx}>
+                                <Item key={idx} count={count} description={description} total={total} />
                             </Grid.Row>
                         );
                     })
                     : <div>No items present.</div>
                 }
             </Grid>
+            {totalPrice}
         </Wrapper>
     )
 }
