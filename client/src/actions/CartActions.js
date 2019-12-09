@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const domain = 'http://localhost:8000';
 
-const getPricing = () => {
+const getPricing = async () => {
     const resp = await axios(domain + '/items');
     return resp.data;
 }
