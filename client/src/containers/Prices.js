@@ -29,7 +29,7 @@ const PricesContainer = () => {
         <Wrapper>
             <Grid>
                 {pricing && Object.keys(pricing).map((item) => {
-                    return (<Grid.Row><Metadata data={item} action={onClickAdd} /></Grid.Row>);
+                    return (<Grid.Row><Metadata key={item} id={item} data={pricing[item]} action={onClickAdd} /></Grid.Row>);
                 })}
             </Grid>
         </Wrapper>

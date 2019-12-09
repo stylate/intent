@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 /* Initialize a new shopping cart. */
 app.get("/init", (req, res, next) => {
     shop.initCart();
-    res.json(shop.shoppingCart);
+    res.json(shop.shoppingCart());
 });
 
 /* Get total price from shopping cart. */
@@ -30,8 +30,7 @@ app.get("/items", (req, res, next) => {
 
 /* Add ID to shopping cart. */
 app.post("/add/:id", (req, res, next) => {
-    const data = req.body; // body only contains ID
-    console.log("data: ", data);
+    const data = req.params.id; // body only contains ID
     shop.addItem(data);
-    res.send(shop.shoppingCart); // send updated shopping cart information
+    res.send(shop.shoppingCart()); // send updated shopping cart information
 });

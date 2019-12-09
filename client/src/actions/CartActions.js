@@ -8,9 +8,11 @@ const getPricing = async () => {
 }
 
 const addItem = async (id) => {
-    const path = domain + '/add' + id;
+    const path = domain + '/add/' + id;
     const cart = await axios.post(path); // POST /add/:id -> append to shopping cart DS
     const resp = await axios(domain + '/total'); // get total by calling GET /total
+    console.log("cart: ", cart);
+    console.log("resp: ", resp);
     return {
         type: 'ADD',
         items: cart.data,
