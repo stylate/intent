@@ -1,10 +1,10 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Grid } from 'semantic-ui-react';
-import './App.css';
+import React from "react";
+import styled from "styled-components";
+import { Grid } from "semantic-ui-react";
+import "./App.css";
 
-import Cart from './containers/Cart';
-import Prices from './containers/Prices';
+import Cart from "./containers/Cart";
+import Prices from "./containers/Prices";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -16,11 +16,15 @@ const App = () => {
   return (
     <Wrapper>
       <Grid>
-          <Grid.Column width={4}><Cart /></Grid.Column>
-          <Grid.Column width={5}><Prices /></Grid.Column>
+        <Grid.Column width={4}>
+          <Cart />
+        </Grid.Column>
+        <Grid.Column width={5}>
+          <Prices />
+        </Grid.Column>
       </Grid>
     </Wrapper>
   );
-}
+};
 
 export default App;

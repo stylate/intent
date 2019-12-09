@@ -33,7 +33,6 @@ var finalPrice = (id, count, total) => {
 
 /* Add item to shopping cart and calculate price totals. */
 var addItem = (id) => {
-    // check if ID already exists in shoppingCart
     let data;
     let obj = pricingDict[id];
     if (id in shoppingCart) {
@@ -42,13 +41,12 @@ var addItem = (id) => {
         data.count += 1;
         data.total = finalPrice(id, data.count, currTotal + obj.unit_price);
         shoppingCart[id] = data;
-    } else { // ID not in shoppingCart
+    } else {
         data = {
             description: obj.description,
             count: 1,
             total: finalPrice(id, 1, obj.unit_price),
-        }; // initialize
-        // check if discount is applied
+        };
         shoppingCart[id] = data;
     }
 };

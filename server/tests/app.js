@@ -1,6 +1,5 @@
 var mocha = require('mocha');
 var chai = require('chai');
-var sinon = require('sinon');
 
 const shop = require('../shop.js');
 const should = chai.should();
@@ -27,34 +26,50 @@ describe('cart functionality', () => {
 })
 
 describe('advanced operations', () => {
-    it('should return discounted price for buying 4 apples', () => {
-        shop.initCart();
-        for (var i = 0; i < 4; i++) {
+    describe('apple discount test', () => {
+        it('should return discounted price for buying 4 apples', () => {
+            shop.initCart();
+            for (var i = 0; i < 4; i++) {
+                shop.addItem('A');
+            }
+            let total = shop.showTotal();
+            total.should.equal(7);
+        })
+    
+        it('should return $14 for 8 apples', () => {
+            shop.initCart();
+            for (var i = 0; i < 7; i++) {
+                shop.addItem('A');
+            }
+            let total = shop.showTotal();
+            total.should.equal(13);
             shop.addItem('A');
-        }
-        let total = shop.showTotal();
-        total.should.equal(7);
+            total = shop.showTotal();
+            total.should.equal(14);
+        })
     })
 
-    it('should return $14 for 8 apples', () => {
-        shop.initCart();
-        for (var i = 0; i < 7; i++) {
-            shop.addItem('A');
-        }
-        let total = shop.showTotal();
-        total.should.equal(13);
-        shop.addItem('A');
-        total = shop.showTotal();
-        total.should.equal(14);
-    })
+    describe('cranberry discount test', () => {
+        it('should return discounted price for buying 7 cranberries', () => {
+            shop.initCart();
+            for (var i = 0; i < 7; i++) {
+                shop.addItem('C');
+            }
+            let total = shop.showTotal();
+            total.should.equal(7.25);
+        })
 
-    it('should return discounted price for buying 7 cranberries', () => {
-        shop.initCart();
-        for (var i = 0; i < 7; i++) {
+        it('should return $12 for 12 cranberries', () => {
+            shop.initCart();
+            for (var i = 0; i < 11; i++) {
+                shop.addItem('C');
+            }
+            let total = shop.showTotal();
+            total.should.equal(12.25);
             shop.addItem('C');
-        }
-        let total = shop.showTotal();
-        total.should.equal(7.25);
+            total = shop.showTotal();
+            total.should.equal(12);
+        })
     })
 
     it('should return total price for buying all items', () => {
