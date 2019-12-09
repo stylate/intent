@@ -6,31 +6,31 @@ var app = express();
 
 // initialization
 app.listen(8000, () => {
-    console.log("Server running on port 8000.");
+  console.log("Server running on port 8000.");
 });
 app.use(cors());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({ extended: true }));
 
 /* Initialize a new shopping cart. */
 app.get("/init", (req, res, next) => {
-    shop.initCart();
-    res.json(shop.shoppingCart());
+  shop.initCart();
+  res.json(shop.shoppingCart());
 });
 
 /* Get total price from shopping cart. */
 app.get("/total", (req, res, next) => {
-    res.json(shop.showTotal());
+  res.json(shop.showTotal());
 });
 
 /* Retrieve information regarding an item. */
 app.get("/items", (req, res, next) => {
-    res.json(shop.getData());
+  res.json(shop.getData());
 });
 
 /* Add ID to shopping cart. */
 app.post("/add/:id", (req, res, next) => {
-    const data = req.params.id; // body only contains ID
-    shop.addItem(data);
-    res.send(shop.shoppingCart()); // send updated shopping cart information
+  const data = req.params.id; // body only contains ID
+  shop.addItem(data);
+  res.send(shop.shoppingCart()); // send updated shopping cart information
 });
