@@ -48,7 +48,7 @@ export const Metadata = props => {
             Price per item: ${unit_price.toFixed(2)}
           </Column>
         </Row>
-        {volume_discounts && volume_discounts.length != 0 ? (
+        {volume_discounts && volume_discounts.length !== 0 ? (
           <Row>
             <Column key={4} width={15}>
               <Discount>
