@@ -10,6 +10,7 @@ export const Cart = (props) => {
     const { items, totalPrice, clear } = props;
     return (
         <Wrapper>
+            <h1>Shopping Cart</h1>
             <Grid>
                 {items && items.length > 0
                     ? items.map((item, idx) => {

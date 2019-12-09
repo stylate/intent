@@ -5,16 +5,26 @@ import { Grid } from 'semantic-ui-react';
 import { CartActions } from '../actions';
 import { Metadata } from '../components';
 
-const MetaBox = styled.div`
-    margin-top: 5%;
+const Wrapper = styled.div`
     margin-left: 10%;
-    width: 20%;
+`;
+
+const MetaBox = styled.div`
+    width: 18vw;
     position: relative;
     display: flex;
     flex-direction: column;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
     padding: 16px;
     border-radius: 5px; 
+`;
+
+const Row = styled(Grid.Row)`
+    margin-top: 14%;
+`;
+
+const Header = styled.h2`
+    font-size: 20px;
 `;
 
 const fetchPricing = async (setPricing) => {
@@ -34,17 +44,20 @@ const PricesContainer = () => {
     };
     useEffect(() => { fetchPricing(setPricing); }, []);
     return (
-        <MetaBox>
+        <Wrapper>
             <Grid>
-                {pricing && Object.keys(pricing).map((item) => {
-                    return (
-                        <Grid.Row key={item} columns={3}>
-                            <Metadata key={item} id={item} data={pricing[item]} action={onClickAdd} />
-                        </Grid.Row>
-                    );
-                })}
+                <Grid.Row><Header>Add to Cart</Header></Grid.Row>
+                <MetaBox>
+                    {pricing && Object.keys(pricing).map((item) => {
+                        return (
+                            <Row>
+                                <Metadata key={item} id={item} data={pricing[item]} action={onClickAdd} />
+                            </Row>
+                        );
+                    })}
+                </MetaBox>
             </Grid>
-        </MetaBox>
+        </Wrapper>
     );
 }
 
