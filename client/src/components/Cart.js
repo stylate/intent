@@ -6,6 +6,15 @@ import { Item } from './Item';
 
 const Wrapper = styled.div``;
 
+const Header = styled.div`
+    margin-top: 2%;
+    font-size: 14px;
+`;
+
+const Results = styled.div`
+    margin-left: 5%;
+`;
+
 export const Cart = (props) => {
     const { items, totalPrice, clear } = props;
     return (
@@ -21,13 +30,23 @@ export const Cart = (props) => {
                             </Grid.Row>
                         );
                     })
-                    : <div>No items present.</div>
+                    : <Grid.Row>
+                        <Results>
+                            <Header>No items present.</Header>
+                        </Results>
+                    </Grid.Row>
                 }
+                <Results>
+                    <Grid.Row>
+                        <Button onClick={clear}>
+                            Clear Cart
+                        </Button>
+                    </Grid.Row>
+                    <Grid.Row>
+                        Total: ${totalPrice.toFixed(2)}
+                    </Grid.Row>
+                </Results>
             </Grid>
-            <Button onClick={clear}>
-                Clear Cart
-            </Button>
-            {totalPrice}
         </Wrapper>
     )
 }

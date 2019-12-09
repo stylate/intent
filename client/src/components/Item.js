@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Grid } from 'semantic-ui-react';
 
 const ItemBox = styled.div`
-    margin-top: 5%;
     margin-left: 10%;
     width: 30vw;
     position: relative;
@@ -21,7 +20,7 @@ export const Item = (props) => {
         <ItemBox>
             <Grid>
                 <Grid.Column width={5}>{description}</Grid.Column>
-                <Grid.Column width={4}>Count: {count}</Grid.Column>
+                <Grid.Column width={6}>Count: {count}</Grid.Column>
                 <Grid.Column width={2}>${total.toFixed(2)}</Grid.Column>
             </Grid>
         </ItemBox>
