@@ -9,11 +9,17 @@ const Wrapper = styled.div``;
 const CartContainer = () => {
     const currState = useSelector((state) => state.cartReducer);
     const dispatch = useDispatch();
-    const clearCart = () => dispatch(CartActions.clearCart());
+    const clear = async () => dispatch(await CartActions.clearCart());
     const { items, total } = currState;
     const itemList = Object.keys(items).map((key) => {
         return [items[key]]
     });
+    const clearCart = () => {
+        const send = async () => {
+            await clear();
+        }
+        send();
+    }
     return (
         <Wrapper>
             <Cart items={itemList} totalPrice={total} clear={clearCart} />

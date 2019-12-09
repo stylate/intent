@@ -20,7 +20,8 @@ const addItem = async (id) => {
     };
 }
 
-const clearCart = () => {
+const clearCart = async () => {
+    await axios(domain + '/init');
     return {
         type: 'INIT'
     };

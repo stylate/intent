@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Grid } from 'semantic-ui-react';
+import { Grid, Button } from 'semantic-ui-react';
 
 import { Item } from './Item';
 
@@ -8,13 +8,16 @@ const Wrapper = styled.div``;
 
 export const Cart = (props) => {
     const { items, totalPrice, clear } = props;
-    console.log("cart props: ", props);
+    console.log("items: ", props);
     return (
         <Wrapper>
             <Grid>
                 {items && items.length > 0
                     ? items.forEach((item, idx) => {
                         const { count, description, total} = item[0];
+                        console.log("count: ", count);
+                        console.log("description: ", description);
+                        console.log("total: ", total);
                         return (
                             <Grid.Row key={idx}>
                                 <Item key={idx} count={count} description={description} total={total} />
@@ -24,6 +27,9 @@ export const Cart = (props) => {
                     : <div>No items present.</div>
                 }
             </Grid>
+            <Button onClick={clear}>
+                Clear Cart
+            </Button>
             {totalPrice}
         </Wrapper>
     )
