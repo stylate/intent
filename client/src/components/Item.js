@@ -4,6 +4,7 @@ import { Grid } from 'semantic-ui-react';
 
 const ItemBox = styled.div`
     margin-left: 10%;
+    margin-top: -2%;
     width: 30vw;
     position: relative;
     display: flex;
@@ -19,7 +20,6 @@ const Name = styled.h2`
 
 export const Item = (props) => {
     const { count, description, total } = props;
-    console.log("props: ", props);
     return (
         <ItemBox>
             <Grid>

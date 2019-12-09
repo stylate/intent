@@ -1,7 +1,6 @@
 import React from 'react';
-import logo from './logo.svg';
 import styled from 'styled-components';
-import { Grid, GridColumn } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
 import './App.css';
 
 import Cart from './containers/Cart';

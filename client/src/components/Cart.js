@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Grid, Button } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
 
 import { Item } from './Item';
 import { Results } from './Results';
@@ -27,10 +27,10 @@ export const Cart = (props) => {
                                 <Item key={idx} count={count} description={description} total={total} />
                             </Grid.Row>
                         );
-                    })
+                      })
                     : <Grid.Row>
-                            <Header>No items present.</Header>
-                    </Grid.Row>
+                        <Header>No items present.</Header>
+                      </Grid.Row>
                 }
                 <Results totalPrice={totalPrice} clear={clear} />
             </Grid>

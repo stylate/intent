@@ -20,7 +20,7 @@ const MetaBox = styled.div`
 `;
 
 const Row = styled(Grid.Row)`
-    margin-top: 14%;
+    margin-top: 8%;
 `;
 
 const Header = styled.h2`
