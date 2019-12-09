@@ -3,16 +3,14 @@ import styled from 'styled-components';
 import { Grid, Button } from 'semantic-ui-react';
 
 import { Item } from './Item';
+import { Results } from './Results';
 
 const Wrapper = styled.div``;
 
 const Header = styled.div`
     margin-top: 2%;
+    margin-left: 4%;
     font-size: 14px;
-`;
-
-const Results = styled.div`
-    margin-left: 5%;
 `;
 
 export const Cart = (props) => {
@@ -31,21 +29,10 @@ export const Cart = (props) => {
                         );
                     })
                     : <Grid.Row>
-                        <Results>
                             <Header>No items present.</Header>
-                        </Results>
                     </Grid.Row>
                 }
-                <Results>
-                    <Grid.Row>
-                        <Button onClick={clear}>
-                            Clear Cart
-                        </Button>
-                    </Grid.Row>
-                    <Grid.Row>
-                        Total: ${totalPrice.toFixed(2)}
-                    </Grid.Row>
-                </Results>
+                <Results totalPrice={totalPrice} clear={clear} />
             </Grid>
         </Wrapper>
     )

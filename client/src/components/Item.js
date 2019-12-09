@@ -13,14 +13,18 @@ const ItemBox = styled.div`
     border-radius: 5px; 
 `;
 
+const Name = styled.h2`
+    font-size: 16px;
+`;
+
 export const Item = (props) => {
     const { count, description, total } = props;
     console.log("props: ", props);
     return (
         <ItemBox>
             <Grid>
-                <Grid.Column width={5}>{description}</Grid.Column>
-                <Grid.Column width={6}>Count: {count}</Grid.Column>
+                <Grid.Column width={7}><Name>{description}</Name></Grid.Column>
+                <Grid.Column width={5}>Count: {count}</Grid.Column>
                 <Grid.Column width={2}>${total.toFixed(2)}</Grid.Column>
             </Grid>
         </ItemBox>
