@@ -3,14 +3,26 @@ import axios from "axios";
 const domain = "http://localhost:8000";
 
 const getPricing = async () => {
-  const resp = await axios(domain + "/items");
-  return resp.data;
+  try {
+    const resp = await axios(domain + "/items");
+    return resp.data;
+  } catch (e) {
+    return {};
+  }
 };
 
 const addItem = async id => {
   const path = domain + "/add/" + id;
-  const cart = await axios.post(path); // POST /add/:id -> append to shopping cart DS
-  const currentPrice = await axios(domain + "/total"); // get total by calling GET /total
+  let cart;
+  let currentPrice;
+  try {
+    cart = await axios.post(path);
+    currentPrice = await axios(domain + "/total");
+  } catch (e) { // unable to add item to shopping cart. reset to initial state
+    return {
+      type: "INIT"
+    };
+  }
   return {
     type: "ADD",
     items: cart.data,
@@ -19,7 +31,11 @@ const addItem = async id => {
 };
 
 const clearCart = async () => {
-  await axios(domain + "/init");
+  try {
+    await axios(domain + "/init");
+  } catch (e) {
+    // clear failed. reset front-end anyway by skipping to return statement
+  }
   return {
     type: "INIT"
   };
