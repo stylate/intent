@@ -5,12 +5,21 @@ import { Grid } from 'semantic-ui-react';
 const Wrapper = styled.div``;
 
 export const Cart = (props) => {
-    const { data } = props;
+    const { items, totalPrice } = props;
+    console.log("items: ", items);
     return (
         <Wrapper>
             <Grid>
-                {data && data.length > 0
-                    ? data.map((key) => {
+                {items && items.length > 0
+                    ? items.forEach((item) => {
+                        const { count, description, total} = item[0];
+                        return (
+                            <Grid.Row>
+                                <Grid.Column>Count: {count}</Grid.Column>
+                                <Grid.Column>Description: {description}</Grid.Column>
+                                <Grid.Column>Total: {total}</Grid.Column>
+                            </Grid.Row>
+                        );
                     })
                     : <div>No items present.</div>
                 }

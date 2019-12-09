@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
-import { CartActions } from '../actions';
-import { Items } from '../components';
+import { Cart } from '../components';
 
 const Wrapper = styled.div``;
 
@@ -10,10 +9,12 @@ const CartContainer = () => {
     const currState = useSelector((state) => state.cartReducer);
     const dispatch = useDispatch();
     const { items, total } = currState;
-    console.log(currState);
+    const itemList = Object.keys(items).map((key) => {
+        return [items[key]]
+    });
     return (
         <Wrapper>
-
+            <Cart items={itemList} totalPrice={total} />
         </Wrapper>
     );
 }
