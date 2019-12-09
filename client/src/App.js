@@ -8,10 +8,8 @@ import Prices from './containers/Prices';
 const App = () => {
   return (
       <div className="App">
-        <header className="App-header">
           <Cart />
           <Prices />
-        </header>
       </div>
   );
 }

@@ -11,9 +11,9 @@ export const Metadata = (props) => {
     }
     return (
         <div>
-            <Grid.Column width={9}>{description}</Grid.Column>
-            <Grid.Column width={4}>{unit_price}</Grid.Column>
-            <Grid.Column width={2}>
+            <Grid.Column key={1}>{description}</Grid.Column>
+            <Grid.Column key={2}>{unit_price}</Grid.Column>
+            <Grid.Column key={3}>
                 <Button icon onClick={execute}>
                     <Icon name='plus' />
                 </Button>

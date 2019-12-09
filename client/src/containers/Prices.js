@@ -7,8 +7,8 @@ import { Metadata } from '../components';
 
 const MetaBox = styled.div`
     margin-top: 5%;
-    margin-left: -10%;
-    width: 40%;
+    margin-left: 10%;
+    width: 20%;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -35,10 +35,10 @@ const PricesContainer = () => {
     useEffect(() => { fetchPricing(setPricing); }, []);
     return (
         <MetaBox>
-            <Grid columns={3}>
+            <Grid>
                 {pricing && Object.keys(pricing).map((item) => {
                     return (
-                        <Grid.Row key={item}>
+                        <Grid.Row key={item} columns={3}>
                             <Metadata key={item} id={item} data={pricing[item]} action={onClickAdd} />
                         </Grid.Row>
                     );
