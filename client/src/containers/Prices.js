@@ -48,14 +48,14 @@ const PricesContainer = () => {
   return (
     <Wrapper>
       <Grid>
-        <Grid.Row>
+        <Grid.Row key={1}>
           <Header>Add to Cart</Header>
         </Grid.Row>
         <MetaBox>
           {pricing &&
             Object.keys(pricing).map(item => {
               return (
-                <Row>
+                <Row key={item}>
                   <Metadata
                     key={item}
                     id={item}
