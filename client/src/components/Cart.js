@@ -13,11 +13,8 @@ export const Cart = (props) => {
         <Wrapper>
             <Grid>
                 {items && items.length > 0
-                    ? items.forEach((item, idx) => {
+                    ? items.map((item, idx) => {
                         const { count, description, total} = item[0];
-                        console.log("count: ", count);
-                        console.log("description: ", description);
-                        console.log("total: ", total);
                         return (
                             <Grid.Row key={idx}>
                                 <Item key={idx} count={count} description={description} total={total} />

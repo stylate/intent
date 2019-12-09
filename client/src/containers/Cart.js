@@ -14,6 +14,7 @@ const CartContainer = () => {
     const itemList = Object.keys(items).map((key) => {
         return [items[key]]
     });
+    console.log("items: ", items);
     const clearCart = () => {
         const send = async () => {
             await clear();
