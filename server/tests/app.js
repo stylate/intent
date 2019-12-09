@@ -36,6 +36,18 @@ describe('advanced operations', () => {
         total.should.equal(7);
     })
 
+    it('should return $14 for 8 apples', () => {
+        shop.initCart();
+        for (var i = 0; i < 7; i++) {
+            shop.addItem('A');
+        }
+        let total = shop.showTotal();
+        total.should.equal(13);
+        shop.addItem('A');
+        total = shop.showTotal();
+        total.should.equal(14);
+    })
+
     it('should return discounted price for buying 7 cranberries', () => {
         shop.initCart();
         for (var i = 0; i < 7; i++) {

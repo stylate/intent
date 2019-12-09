@@ -20,13 +20,15 @@ var getData = () => {
 
 /* Calculate the final price based on a discount (if it exists). */
 var finalPrice = (id, count, total) => {
-    let discount = pricingDict[id].volume_discounts[0];
+    let item = pricingDict[id];
+    let discount = item.volume_discounts[0];
     if (count == 0 || !discount || count % discount.number != 0) {
         return total; // no existence of items, no discount or not enough counts of item
     }
 
-    // there exists a discount. retrieve the final price minus the discount value
-    return total - (total - discount.price);
+    // there exists a discount. discountPrice = original - reduced price
+    const discountPrice = (item.unit_price * item.volume_discounts[0].number) - item.volume_discounts[0].price;
+    return total - discountPrice;
 }
 
 /* Add item to shopping cart and calculate price totals. */
