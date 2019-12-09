@@ -10,7 +10,7 @@ const CartContainer = () => {
   const { items, total } = currState;
   const itemList = Object.keys(items).map(key => {
     return [items[key]];
-  });
+  }); // convert dict to array
   const clearCart = () => {
     const send = async () => {
       await clear();

@@ -5,8 +5,6 @@ import { Grid } from "semantic-ui-react";
 import { Item } from "./Item";
 import { Results } from "./Results";
 
-const Wrapper = styled.div``;
-
 const Header = styled.div`
   margin-top: 2%;
   margin-left: 4%;
@@ -16,7 +14,7 @@ const Header = styled.div`
 export const Cart = props => {
   const { items, totalPrice, clear } = props;
   return (
-    <Wrapper>
+    <div>
       <h1>Shopping Cart</h1>
       <Grid>
         {items && items.length > 0 ? (
@@ -40,6 +38,6 @@ export const Cart = props => {
         )}
         <Results totalPrice={totalPrice} clear={clear} />
       </Grid>
-    </Wrapper>
+    </div>
   );
 };
