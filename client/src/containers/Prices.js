@@ -5,7 +5,17 @@ import { Grid } from 'semantic-ui-react';
 import { CartActions } from '../actions';
 import { Metadata } from '../components';
 
-const Wrapper = styled.div``;
+const MetaBox = styled.div`
+    margin-top: 5%;
+    margin-left: -10%;
+    width: 40%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    border-radius: 5px; 
+`;
 
 const fetchPricing = async (setPricing) => {
     const resp = await CartActions.getPricing();
@@ -22,17 +32,19 @@ const PricesContainer = () => {
         };
         send();
     };
-    useEffect(() => {
-        fetchPricing(setPricing);
-    }, []);
+    useEffect(() => { fetchPricing(setPricing); }, []);
     return (
-        <Wrapper>
-            <Grid>
+        <MetaBox>
+            <Grid columns={3}>
                 {pricing && Object.keys(pricing).map((item) => {
-                    return (<Grid.Row><Metadata key={item} id={item} data={pricing[item]} action={onClickAdd} /></Grid.Row>);
+                    return (
+                        <Grid.Row key={item}>
+                            <Metadata key={item} id={item} data={pricing[item]} action={onClickAdd} />
+                        </Grid.Row>
+                    );
                 })}
             </Grid>
-        </Wrapper>
+        </MetaBox>
     );
 }
 
